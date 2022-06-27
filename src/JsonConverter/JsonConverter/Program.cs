@@ -3,18 +3,6 @@ using JsonConverter;
 using System.Collections;
 using System.Text;
 
-Console.WriteLine("Hello, World!");
-
-//var course = new Course();
-//var session = new Session();
-//var address = new Address();
-//var phone = new Phone();
-//var instructor = new Instructor();
-//var admissionTest = new AdmissionTest();
-//var program = new Program();
-//var topic = new Topic();
-
-
 
 var adderss = new Address()
 {
@@ -50,9 +38,10 @@ var instructor = new Instructor
 var ex = new Example
 {
     Name = "Akash",
-    Roll = 40.56,
+    Roll = 40.56f,
     //Subject = new List<string>() { "sldkj", "sldjfkld", "sldfjkdf" }
-    Subject = new List<int> { 11,22,44}
+    Subject = new List<bool> { true, false, true},
+    //IsCheck = true
 };
 
 var listInstructor = new List<Instructor>();
@@ -66,11 +55,6 @@ var admissionTest = new AdmissionTest()
     EndDateTime = DateTime.Now,
     TestFees = 888.87
 };
-
-
-
-
-
 
 var course = new Course
 {
@@ -88,4 +72,12 @@ var courseList = new List<Course>() { course, course };
 //Console.WriteLine(course);
  
 
-Console.WriteLine(JsonFormatter.Convert(courseList));
+Console.WriteLine(JsonFormatter.Convert(topic));
+
+
+//var sb = new StringBuilder("likhon");
+
+//Console.WriteLine(sb.Remove(sb.Length - 2, 1));
+
+//var ch = sb[sb.Length - 1];
+//Console.WriteLine(sb[4]);

@@ -9,8 +9,8 @@ namespace JsonConverter
     public class Example
     {
         public string Name { get; set; }
-        public double Roll { get; set; }
+        public float Roll { get; set; }
         public bool IsCheck { get; set; }
-        public List<int> Subject { get; set; }
+        public List<bool> Subject { get; set; }
     }
 }

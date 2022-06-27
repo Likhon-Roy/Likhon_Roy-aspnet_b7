@@ -11,23 +11,52 @@ namespace JsonConverter
     public class JsonFormatter
     {
         private static StringBuilder? jsonString = new StringBuilder();
+        private static int number = 0;
+        private static bool isLast = false;
 
-
-        public static StringBuilder Convert(object item)
+        public static string Convert(object item)
         {
+            number++;
+
             if (item is Array)
             {
 
             }
             if (item is IList)
             {
-                jsonString = jsonString.Append("[\n");
-                foreach (var x in (IList)item)
+                if(item != null)
                 {
-                    Convert(x);
-                }
-                jsonString = jsonString.Append("]\n");
+                    var i = 0;
+                    var j = 0;
+                    foreach (var x in (IList)item)
+                    {
+                        i++;
+                    }
 
+                    jsonString = jsonString.Append("[\n");
+                    foreach (var x in (IList)item)
+                    {
+                        j++;
+                        if(i == j)
+                        {
+                            Convert(x);
+                            for (var y = jsonString.Length-1; y >= 0; y--)
+                            {
+                                if (jsonString[y] == ',')
+                                {
+                                    jsonString = jsonString.Remove(y, 1);
+                                    break;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            Convert(x);
+                        }
+                    }
+                    jsonString = jsonString.Append("]\n");
+                }
             }
             else
             {
@@ -40,16 +69,8 @@ namespace JsonConverter
                 ConstructorInfo constructor = type.GetConstructor(new Type[] { });
                 object instance = constructor.Invoke(new object[] { });
 
-                //type.IsPrimitive
-
-
                 foreach (var property in propertyInfo)
                 {
-                    //if(property.PropertyType.Name == "List`1")
-                    //{
-                    //    Convert(property.GetValue(item));
-                    //}
-
                     if (property.PropertyType == typeof(object))
                     {
 
@@ -93,9 +114,21 @@ namespace JsonConverter
                             {
                                 if(x.GetType().Namespace == "System")
                                 {
-                                    if(x.GetType().Name == "Int32" || x.GetType().Name == "Double" || x.GetType().Name == "Boolean")
+                                    if(x.GetType().Name == "Int32" || x.GetType().Name == "Double" || x.GetType().Name == "Single")
                                     {
                                         jsonString = jsonString.Append($"{x},\n");
+                                    }
+                                    else if (x.GetType().Name == "Boolean")
+                                    {
+                                        //var x = property.GetValue(instance);
+                                        if (property.GetValue(instance).ToString() == "True")
+                                        {
+                                            jsonString = jsonString.Append($" true,\n");
+                                        }
+                                        else
+                                        {
+                                            jsonString = jsonString.Append($" false,\n");
+                                        }
                                     }
                                     else
                                     {
@@ -133,13 +166,51 @@ namespace JsonConverter
 
                     else if (property.PropertyType.Namespace != "System")
                     {
+                        if(propertyInfo.Last() == property)
+                        {
+                            isLast = true;
+                        }
+                        else
+                        {
+                            isLast = false;
+                        }
                         jsonString = jsonString.Append($"\"{property.Name}\" : ");
                         Convert(property.GetValue(item));
                     }
 
                     else if (propertyInfo.Last() == property)
                     {
-                        jsonString = jsonString.Append($"\"{property.Name}\" : \"{property.GetValue(instance)}\"\n");
+                        if (property.PropertyType.Name == "String")
+                        {
+                            if (property.GetValue(instance) == null)
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : null\n");
+                            }
+                            else
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : \"{property.GetValue(instance)}\"\n");
+                            }
+                        }
+                        else if (property.PropertyType.Name == "Int32" || property.PropertyType.Name == "Double" || property.PropertyType.Name == "Single")
+                        {
+                            jsonString = jsonString.Append($"\"{property.Name}\" : {property.GetValue(instance)}\n");
+                        }
+                        else if (property.PropertyType.Name == "Boolean")
+                        {
+                            var x = property.GetValue(instance);
+                            if (property.GetValue(instance).ToString() == "True")
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : true\n");
+                            }
+                            else
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : false\n");
+                            }
+                        }
+                        else
+                        {
+                            jsonString = jsonString.Append($"\"{property.Name}\" : \"{property.GetValue(instance)}\"\n");
+                        }
                     }
 
                     else
@@ -155,9 +226,21 @@ namespace JsonConverter
                                 jsonString = jsonString.Append($"\"{property.Name}\" : \"{property.GetValue(instance)}\",\n");
                             }
                         }
-                        else if (property.PropertyType.Name == "Int32" || property.PropertyType.Name == "Double" || property.PropertyType.Name == "Boolean")
+                        else if (property.PropertyType.Name == "Int32" || property.PropertyType.Name == "Double" || property.PropertyType.Name == "Single")
                         {
                             jsonString = jsonString.Append($"\"{property.Name}\" : {property.GetValue(instance)},\n");
+                        }
+                        else if (property.PropertyType.Name == "Boolean")
+                        {
+                            //var x = property.GetValue(instance);
+                            if (property.GetValue(instance).ToString() == "True")
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : true,\n");
+                            }
+                            else
+                            {
+                                jsonString = jsonString.Append($"\"{property.Name}\" : false,\n");
+                            }
                         }
                         else
                         {
@@ -165,15 +248,30 @@ namespace JsonConverter
                         }
                     }
                 }
-                jsonString = jsonString.Append("},\n");
+
+                if (isLast)
+                {
+                    jsonString = jsonString.Append("}\n");
+                    isLast = false;
+                }
+                else
+                {
+                    jsonString = jsonString.Append("},\n");
+                }
+                
             }
 
+            number--;
+            if (number == 0)
+            {
+                if (jsonString[jsonString.Length - 3] == '}')
+                {
+                    jsonString = jsonString.Remove(jsonString.Length-2, 1);
+                }
 
-
-            //Console.WriteLine(jsonString);
-
-
-            return jsonString;
+                return jsonString.ToString();
+            }
+            return "";
         }
     }
 }
