@@ -1,14 +1,176 @@
-{
-  "Title": "Java",
-  "Description": "This is java topic",
-  "Sessions": [
-    {
-      "DurationInHour": 5,
-      "LearningObjective": "important"
+[
+  {
+    "Title": "C sharp",
+    "Teacher": {
+      "Name": "Likhon",
+      "Email": "lsjdfkj@gmail.com",
+      "PresentAddress": {
+        "Street": "G L Roy Road",
+        "City": "Rangpur",
+        "Country": "Bangladesh"
+      },
+      "PhoneNumbers": [
+        {
+          "Number": "zzz",
+          "Extension": "yyy",
+          "CountryCode": "xxx"
+        },
+        {
+          "Number": "zzz",
+          "Extension": "yyy",
+          "CountryCode": "xxx"
+        }
+      ],
+      "PermanentAddress": {
+        "Street": "G L Roy Road",
+        "City": "Rangpur",
+        "Country": "Bangladesh"
+      }
     },
-    {
-      "DurationInHour": 8,
-      "LearningObjective": "less importart"
+    "Topics": [
+      {
+        "Title": "Java",
+        "Description": "This is java topic",
+        "Sessions": [
+          {
+            "DurationInHour": 5,
+            "LearningObjective": "important"
+          },
+          {
+            "DurationInHour": 8,
+            "LearningObjective": "less importart"
+          }
+        ]
+      },
+      {
+        "Title": "Java",
+        "Description": "This is java topic",
+        "Sessions": [
+          {
+            "DurationInHour": 5,
+            "LearningObjective": "important"
+          },
+          {
+            "DurationInHour": 8,
+            "LearningObjective": "less importart"
+          }
+        ]
+      }
+    ],
+    "Fees": 500.55,
+    "Tests": [
+      {
+        "StartDateTime": "30-06-2022 17:25:22",
+        "EndDateTime": "30-06-2022 17:25:22",
+        "TestFees": 888.87
+      },
+      {
+        "StartDateTime": "30-06-2022 17:25:22",
+        "EndDateTime": "30-06-2022 17:25:22",
+        "TestFees": 888.87
+      }
+    ],
+    "Example": {
+      "Subject": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "Name": "Akash",
+      "Roll": 40.56,
+      "IsCheck": true
     }
-  ]
-}
+  },
+  {
+    "Title": "C sharp",
+    "Teacher": {
+      "Name": "Likhon",
+      "Email": "lsjdfkj@gmail.com",
+      "PresentAddress": {
+        "Street": "G L Roy Road",
+        "City": "Rangpur",
+        "Country": "Bangladesh"
+      },
+      "PhoneNumbers": [
+        {
+          "Number": "zzz",
+          "Extension": "yyy",
+          "CountryCode": "xxx"
+        },
+        {
+          "Number": "zzz",
+          "Extension": "yyy",
+          "CountryCode": "xxx"
+        }
+      ],
+      "PermanentAddress": {
+        "Street": "G L Roy Road",
+        "City": "Rangpur",
+        "Country": "Bangladesh"
+      }
+    },
+    "Topics": [
+      {
+        "Title": "Java",
+        "Description": "This is java topic",
+        "Sessions": [
+          {
+            "DurationInHour": 5,
+            "LearningObjective": "important"
+          },
+          {
+            "DurationInHour": 8,
+            "LearningObjective": "less importart"
+          }
+        ]
+      },
+      {
+        "Title": "Java",
+        "Description": "This is java topic",
+        "Sessions": [
+          {
+            "DurationInHour": 5,
+            "LearningObjective": "important"
+          },
+          {
+            "DurationInHour": 8,
+            "LearningObjective": "less importart"
+          }
+        ]
+      }
+    ],
+    "Fees": 500.55,
+    "Tests": [
+      {
+        "StartDateTime": "30-06-2022 17:25:22",
+        "EndDateTime": "30-06-2022 17:25:22",
+        "TestFees": 888.87
+      },
+      {
+        "StartDateTime": "30-06-2022 17:25:22",
+        "EndDateTime": "30-06-2022 17:25:22",
+        "TestFees": 888.87
+      }
+    ],
+    "Example": {
+      "Subject": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "Name": "Akash",
+      "Roll": 40.56,
+      "IsCheck": true
+    }
+  }
+]

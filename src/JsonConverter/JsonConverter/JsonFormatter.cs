@@ -18,11 +18,7 @@ namespace JsonConverter
         {
             number++;
 
-            if (item is Array)
-            {
-
-            }
-            if (item is IList)
+            if (item is IList || item is Array)
             {
                 if(item != null)
                 {
@@ -48,7 +44,6 @@ namespace JsonConverter
                                     break;
                                 }
                             }
-
                         }
                         else
                         {
@@ -63,29 +58,27 @@ namespace JsonConverter
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 Type type = assembly.GetType(item.ToString());
 
-                var rr = type.IsCollectible;
-
                 PropertyInfo[] propertyInfo = type.GetProperties();
                 ConstructorInfo constructor = type.GetConstructor(new Type[] { });
                 object instance = constructor.Invoke(new object[] { });
 
-                foreach (var property in propertyInfo)
-                {
-                    if (property.PropertyType == typeof(object))
-                    {
+                //foreach (var property in propertyInfo)
+                //{
+                //    if (property.PropertyType == typeof(object))
+                //    {
 
-                    }
+                //    }
 
-                    var y = property.PropertyType;
+                //    var y = property.PropertyType;
 
-                    var classname = property.DeclaringType;
+                //    var classname = property.DeclaringType;
 
-                    var x = property.GetType();
+                //    var x = property.GetType();
 
-                    var a = property.GetValue(instance, null);
+                //    var a = property.GetValue(instance, null);
 
-                    var b = property.MemberType;
-                }
+                //    var b = property.MemberType;
+                //}
 
                 foreach (var property in propertyInfo)
                 {
@@ -94,14 +87,12 @@ namespace JsonConverter
                 }
 
 
-
-
-
                 jsonString = jsonString.Append("{\n");
 
                 foreach (var property in propertyInfo)
                 {
-                    if (property.PropertyType.Name == "List`1")
+                    var name = property.PropertyType.Name;
+                    if (name == "List`1" || name == "String[]" || name == "Int32[]" || name == "Single[]" || name == "Double[]")
                     {
                         var listValue = property.GetValue(item);
 
@@ -120,7 +111,6 @@ namespace JsonConverter
                                     }
                                     else if (x.GetType().Name == "Boolean")
                                     {
-                                        //var x = property.GetValue(instance);
                                         if (property.GetValue(instance).ToString() == "True")
                                         {
                                             jsonString = jsonString.Append($" true,\n");
@@ -132,7 +122,7 @@ namespace JsonConverter
                                     }
                                     else
                                     {
-                                        jsonString = jsonString.Append($"\"{x}\",");
+                                        jsonString = jsonString.Append($"\"{x}\",\n");
                                     }
                                 }
                                 else

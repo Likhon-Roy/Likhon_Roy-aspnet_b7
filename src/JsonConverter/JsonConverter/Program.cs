@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using JsonConverter;
+﻿using JsonConverter;
 using System.Collections;
 using System.Text;
 
@@ -35,19 +34,21 @@ var instructor = new Instructor
                                     }
 };
 
+double[] str = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
 var ex = new Example
 {
     Name = "Akash",
     Roll = 40.56f,
     //Subject = new List<string>() { "sldkj", "sldjfkld", "sldfjkdf" }
-    Subject = new List<bool> { true, false, true},
-    //IsCheck = true
+    //Subject = new List<int> { 4, 4, 2},
+    Subject = str,
+    IsCheck = true
 };
 
 var listInstructor = new List<Instructor>();
 listInstructor.Add(instructor);
 listInstructor.Add(instructor);
-
 
 var admissionTest = new AdmissionTest()
 {
@@ -66,18 +67,10 @@ var course = new Course
     Example = ex
 };
 
-
 var courseList = new List<Course>() { course, course };
-
-//Console.WriteLine(course);
+Course[] courseArray = courseList.ToArray();
  
 
-Console.WriteLine(JsonFormatter.Convert(topic));
 
 
-//var sb = new StringBuilder("likhon");
-
-//Console.WriteLine(sb.Remove(sb.Length - 2, 1));
-
-//var ch = sb[sb.Length - 1];
-//Console.WriteLine(sb[4]);
+Console.WriteLine(JsonFormatter.Convert(courseList));
