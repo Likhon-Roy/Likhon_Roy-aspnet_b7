@@ -25,9 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Patient\Controllers\" />
     <Folder Include="Areas\Patient\Data\" />
-    <Folder Include="Areas\Patient\Models\" />
   </ItemGroup>
 
 </Project>

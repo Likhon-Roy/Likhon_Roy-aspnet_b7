@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Entities
+namespace Infrastructure.BusinessObjects
 {
-    public class PatientAdmission : IEntity<Guid>
+    public class PatientAdmition
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }
