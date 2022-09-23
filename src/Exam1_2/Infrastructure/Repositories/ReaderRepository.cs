@@ -17,8 +17,12 @@ namespace Infrastructure.Repositories
         public (IList<Reader> data, int total, int totalDisplay) GetReaders(int pageIndex,
             int pageSize, string searchText, string orderby)
         {
+            if(orderby == "" || orderby == null){
+                orderby = null;
+            }
+            
             (IList<Reader> data, int total, int totalDisplay) results = 
-                GetDynamic(x => x.Name.Contains(searchText), null,
+                GetDynamic(x => x.Name.Contains(searchText), orderby,
                 "", pageIndex, pageSize, true);
 
             return results;
