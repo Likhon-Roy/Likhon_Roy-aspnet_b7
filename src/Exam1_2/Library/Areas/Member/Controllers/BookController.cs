@@ -7,9 +7,9 @@ using Autofac;
 using Library.Areas.Admin.Models;
 using Library.Models;
 
-namespace Library.Areas.Admin.Controllers
+namespace Library.Areas.Member.Controllers
 {
-    [Area("Admin")]
+    [Area("Member")]
     public class BookController : Controller
     {
         private readonly ILifetimeScope _scope;
@@ -23,23 +23,6 @@ namespace Library.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Create()
-        {
-            BookCreateModel model = _scope.Resolve<BookCreateModel>();
-            return View();
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BookCreateModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                model.ResolveDependency(_scope);
-                await model.CreateBook();
-            }
-            return View(model);
         }
 
         public JsonResult GetBookData()

@@ -13,5 +13,15 @@ namespace Infrastructure.Repositories
         public BookRepository(IApplicationDbContext context) : base((DbContext)context)
         {
         }
+
+        public (IList<Book> data, int total, int totalDisplay) GetBooks(int pageIndex,
+            int pageSize, string searchText, string orderby)
+        {
+            (IList<Book> data, int total, int totalDisplay) results = 
+                GetDynamic(x => x.Name.Contains(searchText), null,
+                "", pageIndex, pageSize, true);
+
+            return results;
+        }
     }
 }

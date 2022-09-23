@@ -48,6 +48,9 @@ namespace Infrastructure
             builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<TimeService>().As<ITimeService>()
+            .InstancePerLifetimeScope();
+
 
             base.Load(builder);
         }

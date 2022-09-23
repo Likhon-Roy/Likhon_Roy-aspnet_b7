@@ -17,19 +17,19 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="reader" class="table table-bordered table-striped">
+            <table id="books" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Address</th>
-                <th>Proffetion</th>
+                <th>AutherName</th>
+                <th>Publisher</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
                 <th>Name</th>
-                <th>Address</th>
-                <th>Proffetion</th>
+                <th>AutherName</th>
+                <th>Publisher</th>
             </tr>
             </tfoot>
             </table>
@@ -49,11 +49,11 @@
 
     <script>
   $(function () {
-    $('#reader').DataTable({
+    $('#books').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "/admin/reader/GetReaderData",
+            "url": "/member/book/GetBookData",
         },
     });
   });

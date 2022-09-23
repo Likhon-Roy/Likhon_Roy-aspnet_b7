@@ -27,5 +27,26 @@ namespace Infrastructure.Services
             _applicationUnitOfWork.Readers.Add(readerEntity);
             _applicationUnitOfWork.Save();
         }
+
+        public (int total, int totalDisplay, IList<ReaderBO> records) GetReaders(int pageIndex,
+            int pageSize, string searchText, string orderby)
+        {
+            (IList<ReaderEO> data, int total, int totalDisplay) results = _applicationUnitOfWork
+                .Readers.GetReaders(pageIndex, pageSize, searchText, orderby);
+
+            IList<ReaderBO> books = new List<ReaderBO>();
+            foreach (ReaderEO reader in results.data)
+            {
+                books.Add(new ReaderBO
+                {
+                    Id = reader.Id,
+                    Name = reader.Name,
+                    Address = reader.Address,
+                    Proffetion = reader.Proffetion
+                });
+            }
+
+            return (results.total, results.totalDisplay, books);
+        }
     }
 }

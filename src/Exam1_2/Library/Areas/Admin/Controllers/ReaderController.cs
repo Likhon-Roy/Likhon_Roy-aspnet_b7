@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Autofac;
 using Library.Areas.Admin.Models;
-
+using Library.Models;
 
 namespace Library.Areas.Admin.Controllers
 {
@@ -40,6 +40,13 @@ namespace Library.Areas.Admin.Controllers
                 await model.CreateReader();
             }
             return View(model);
+        }
+
+        public JsonResult GetReaderData()
+        {
+            var dataTableModel = new DataTablesAjaxRequestModel(Request);
+            var model = _scope.Resolve<ReaderListModel>();
+            return Json(model.GetPagedBooks(dataTableModel));
         }
 
     }
