@@ -36,14 +36,14 @@ namespace Infrastructure.Services
                 .Books.GetBooks(pageIndex, pageSize, searchText, orderby);
 
             IList<BookBO> books = new List<BookBO>();
-            foreach (BookEO course in results.data)
+            foreach (BookEO book in results.data)
             {
                 books.Add(new BookBO
                 {
-                    Id = course.Id,
-                    Name = course.Name,
-                    AutherName = course.AutherName,
-                    Publisher = course.Publisher
+                    Id = book.Id,
+                    Name = book.Name,
+                    AutherName = book.AutherName,
+                    Publisher = book.Publisher
                 });
             }
 
