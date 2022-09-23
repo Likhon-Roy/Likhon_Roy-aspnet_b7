@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Infrastructure.DbContexts;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
+using Infrastructure.UnitOfWorks;
 
 namespace Infrastructure
 {
-    public class InfrastructureModule: Module
+    public class InfrastructureModule : Module
     {
         private readonly string _connectionString;
         private readonly string _migrationAssemblyName;
@@ -30,14 +33,21 @@ namespace Infrastructure
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CourseService>().As<ICourseService>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<BookService>().As<IBookService>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<CourseRepository>().As<ICourseRepository>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<BookRepository>().As<IBookRepository>()
+                .InstancePerLifetimeScope();
 
-            // builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
-            //     .InstancePerLifetimeScope();
+            builder.RegisterType<ReaderService>().As<IReaderService>()
+            .InstancePerLifetimeScope();
+
+            builder.RegisterType<ReaderRepository>().As<IReaderRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
+                .InstancePerLifetimeScope();
+
 
             base.Load(builder);
         }

@@ -1,4 +1,6 @@
 ﻿using Infrastructure.DbContexts;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,13 +12,17 @@ namespace Infrastructure.UnitOfWorks
 {
     public class ApplicationUnitOfWork : UnitOfWork, IApplicationUnitOfWork
     {
-        // public ICourseRepository Courses { get; private set; }
+        public IBookRepository Books { get; private set; }
+        public IReaderRepository Readers { get; private set; }
 
-        public ApplicationUnitOfWork(IApplicationDbContext dbContext
-            // ICourseRepository courseRepository
+
+        public ApplicationUnitOfWork(IApplicationDbContext dbContext,
+            IBookRepository bookRepository,
+            IReaderRepository readerRepository
             ) : base((DbContext)dbContext)
         {
-            // Courses = courseRepository;
+            Books = bookRepository;
+            Readers = readerRepository;
         }
     }
 }

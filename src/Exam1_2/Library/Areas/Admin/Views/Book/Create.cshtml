@@ -1,0 +1,44 @@
+@model BookCreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Quick Example</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" asp-antiforgery="true" asp-action="Create">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Name">Book Name</label>
+                            <input type="text" class="form-control" asp-for="Name" placeholder="Enter Book Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="AutherName">Auther Name</label>
+                            <input type="text" class="form-control" asp-for="AutherName" placeholder="Enter Auther Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Publisher"></label>
+                            <input type="text" class="form-control" asp-for="Publisher" placeholder="Enter Publisher Name">
+                        </div>
+
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

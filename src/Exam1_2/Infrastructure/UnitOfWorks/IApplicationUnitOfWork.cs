@@ -1,9 +1,13 @@
 ﻿
 
+using Infrastructure.Repositories;
+using Infrastructure.Services;
+
 namespace Infrastructure.UnitOfWorks
 {
     public interface IApplicationUnitOfWork : IUnitOfWork
     {
-        // ICourseRepository Courses { get; }
+        IBookRepository Books { get; }
+        IReaderRepository Readers {get; }
     }
 }
