@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyMiniOrm
 {
-    public class ReflectionClass<T>
+    public class OperationOnItem<T>
     {
         public QueryType queryType;
 
@@ -21,7 +21,7 @@ namespace MyMiniOrm
 
         private IDataUtility? _dataUtility;
 
-        public ReflectionClass(IDataUtility dataUtility)
+        public OperationOnItem(IDataUtility dataUtility)
         {
             _dataUtility = dataUtility;
         }

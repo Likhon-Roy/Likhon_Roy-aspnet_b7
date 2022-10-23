@@ -16,21 +16,21 @@ namespace MyMiniOrm
         }
         public async override Task Insert(T item)
         {
-            ReflectionClass<T> inst = new ReflectionClass<T>(new DataUtility());
+            OperationOnItem<T> inst = new OperationOnItem<T>(new DataUtility());
             inst.queryType = QueryType.Insert;
             await inst.RecursiveMethod(item);
         }
 
         public async override Task Update(T item)
         {
-            ReflectionClass<T> inst = new ReflectionClass<T>(new DataUtility());
+            OperationOnItem<T> inst = new OperationOnItem<T>(new DataUtility());
             inst.queryType = QueryType.Update;
             await inst.RecursiveMethod(item);
         }
 
         public async override Task Delete(T item)
         {
-            ReflectionClass<T> inst = new ReflectionClass<T>(new DataUtility());
+            OperationOnItem<T> inst = new OperationOnItem<T>(new DataUtility());
             inst.queryType = QueryType.DeleteByItem;
             await inst.RecursiveMethod(item);
 
