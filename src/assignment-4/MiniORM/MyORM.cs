@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
+using MiniORM;
 
 namespace MyMiniOrm
 {
@@ -61,20 +62,21 @@ namespace MyMiniOrm
             List<Dictionary<string, Object>> r = await inst.GetRecursiveMethod(obj);
 
             await inst.DeleteByIdQuery(r);
-
         }
 
         public async override Task GetAll()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
 
+            Assembly assembly = Assembly.GetExecutingAssembly();
             var u = typeof(T);
             var obj = assembly.CreateInstance(u.FullName);
 
 
-            // ReflectionClass<T> inst = new ReflectionClass<T>(new DataUtility());
-            // inst.queryType = QueryType.GetAll;
-            // await inst.RecursiveMethod(obj);
+            var inst = new GetallOperation<T>(new DataUtility(), obj);
+            inst.queryType = QueryType.GetById;
+            var getAll = await inst.GetAllMethod<T>();
+
+            Console.WriteLine(JsonSerializer.Serialize(getAll));
         }
 
         public async override Task GetById(G id)
@@ -96,6 +98,11 @@ namespace MyMiniOrm
             var inst = new GetOperation<T>(new DataUtility(), obj);
             inst.queryType = QueryType.GetById;
             var r = await inst.GetRecursiveMethod(obj);
+
+
+            // var instssss = new GetOperationAssigning(obj);
+            // inst.queryType = QueryType.GetById;
+            // var t = await instssss.GetByIdFromDictionary(r);
 
             Console.WriteLine(JsonSerializer.Serialize(r));
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyMiniOrm
 {
-    public class GetOperation<T> where T : class, new()
+    public class GetallOperation<T> where T : class, new()
     {
         public QueryType queryType;
         public string? parentTable;
@@ -21,15 +21,14 @@ namespace MyMiniOrm
         private string classFullName;
         private object iiiiiiiiiiiiiiiiiiiii;
         public static List<Dictionary<string, Object>>? dictioNaryObject = new List<Dictionary<string, Object>>();
-        // public object? instance;
 
 
-        public GetOperation(IDataUtility dataUtility, object staticObject)
+        public GetallOperation(IDataUtility dataUtility, object staticObject)
         {
             _dataUtility = dataUtility;
             _staticObject = (T)staticObject;
         }
-        public async Task<Object> GetRecursiveMethod<T>(T item) //where T : class, new()
+        public async Task<object> GetRecursiveMethod<T>(T item) //where T : class, new()
         {
             bool hasParentTable = false;
 
@@ -82,7 +81,7 @@ namespace MyMiniOrm
                     instance = innnn;
                     // _staticObject = (T)instance;
 
-                    var cN = item.GetType().Name;
+                    var cN = item.GetType().FullName;
                     var d = new Dictionary<string, object>();
                     d.Add(cN, innnn);
                     dictioNaryObject.Add(d);
@@ -94,6 +93,8 @@ namespace MyMiniOrm
                 {
                     var c = ppp.GetValue(item, null);
                     ppp.SetValue(instance, c);
+
+                    // ppp.SetValue(_staticObject, c);
                 }
 
                 foreach (var ppp in propertyInfo)
@@ -148,28 +149,10 @@ namespace MyMiniOrm
                             property.SetValue(instance, w);
 
                             var d = new Dictionary<string, object>();
-                            d.Add(property.Name, w);
+                            d.Add(classFullName, w);
                             dictioNaryObject.Add(d);
 
                             await GetRecursiveMethod(w);
-
-                            // var staticObjectProperties = _staticObject.GetType().GetProperties();
-                            // foreach (var sss in staticObjectProperties)
-                            // {
-                            //     if (sss.PropertyType.Name == "List`1")
-                            //     {
-                            //         var fuN = sss.PropertyType.FullName.Split('[', ',')[2];
-                            //         if (classFullName == fuN)
-                            //         {
-                            //             sss.SetValue(_staticObject, w);
-                            //         }
-                            //     }
-                            //     else if (property.PropertyType.Namespace != "System")
-                            //     {
-                            //         sss.SetValue(_staticObject, w);
-                            //     }
-                            // }
-
                         }
                     }
                     else if (property.PropertyType.Namespace != "System")
@@ -189,7 +172,7 @@ namespace MyMiniOrm
                             property.SetValue(instance, insts);
 
                             var d = new Dictionary<string, object>();
-                            d.Add(property.Name, insts);
+                            d.Add(property.PropertyType.FullName, insts);
                             dictioNaryObject.Add(d);
 
                             await GetRecursiveMethod(insts);
@@ -337,6 +320,8 @@ namespace MyMiniOrm
             return listOfObject;
         }
 
+
+
         public async Task AssignValue(Object item) //where T : class, new()
         {
             if (item is IList || item is Array)
@@ -409,5 +394,51 @@ namespace MyMiniOrm
                 }
             }
         }
+
+        public async Task<List<Object>> GetAllMethod<R>()
+        {
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var u = typeof(T);
+            var obj1 = assembly.CreateInstance(u.FullName);
+            var name = obj1.GetType().Name;
+            var query = $"select * from {name}s";
+
+            var listDictionaryItem = await _dataUtility.GetDataAsync(query, null, System.Data.CommandType.Text);
+
+            List<Object> objectForGetAll = new List<object>();
+
+            foreach (var x in listDictionaryItem)
+            {
+                var keys = x.Keys;
+                var obj = assembly.CreateInstance(u.FullName);
+                var objPropertyInfos = assembly.GetType(u.FullName).GetProperties();
+
+                foreach (string key in keys)
+                {
+                    foreach (var ppp in objPropertyInfos)
+                    {
+                        if (key == ppp.Name)
+                        {
+                            var value = x[key].GetType().FullName;
+
+                            if (value != "System.DBNull")
+                            {
+                                if (!(value == "System.String" && (ppp.Name == "Id" || ppp.Name == parentTable + "Id")))
+                                {
+                                    ppp.SetValue(obj, x[key]);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Object rett = await GetRecursiveMethod(obj);
+                objectForGetAll.Add(rett);
+            }
+
+            return objectForGetAll;
+        }
+
     }
 }

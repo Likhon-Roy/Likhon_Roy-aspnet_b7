@@ -1,124 +1,17 @@
-[
-    {
-        "Id": "79dd0913-acc2-4294-8f0b-aeb0f257cd0d",
-        "Title": "C sharp",
-        "Teacher": null,
-        "Topics": null,
-        "Fees": 500.55,
-        "Tests": null
-    },
-    {
-        "Id": "f93437e3-1966-4d0b-8173-45b157ae6da0",
-        "Name": "Likhon",
-        "Email": "lsjdfkj@gmail.com",
-        "PresentAddress": null,
-        "PhoneNumbers": null,
-        "PermanentAddress": null
-    },
-    [
+{
+    "Id": "c482d3ff-2a38-4da6-b8f2-82715d301da0",
+    "Title": "Csharp",
+    "Description": "This is c# topic",
+    "Sessions": [
         {
-            "Id": "6937ec6f-46a9-46c7-9c92-dff5b9eb1465",
-            "Street": "G L Roy Road",
-            "City": "Rangpur",
-            "Country": "Bangladesh"
+            "Id": "6b435dbb-e3ca-4bdd-915a-0cd574d13eed",
+            "DurationInHour": 5,
+            "LearningObjective": "noooooooo"
         },
         {
-            "Id": "6937ec6f-46a9-46c7-9c92-dff5b9eb1465",
-            "Street": "G L Roy Road",
-            "City": "Rangpur",
-            "Country": "Bangladesh"
-        }
-    ],
-    [
-        {
-            "Id": "3cb2e72e-860b-40ba-af00-a1a699b3242d",
-            "Number": "ccc",
-            "Extension": "bbb",
-            "CountryCode": "111111111111"
-        },
-        {
-            "Id": "3cb2e72e-860b-40ba-af00-a1a699b3242d",
-            "Number": "ccc",
-            "Extension": "bbb",
-            "CountryCode": "111111111111"
-        }
-    ],
-    [
-        {
-            "Id": "6937ec6f-46a9-46c7-9c92-dff5b9eb1465",
-            "Street": "G L Roy Road",
-            "City": "Rangpur",
-            "Country": "Bangladesh"
-        },
-        {
-            "Id": "6937ec6f-46a9-46c7-9c92-dff5b9eb1465",
-            "Street": "G L Roy Road",
-            "City": "Rangpur",
-            "Country": "Bangladesh"
-        }
-    ],
-    [
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
+            "Id": "86f44f66-bedd-4f0a-9397-395f711d49de",
             "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        },
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
-            "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        }
-    ],
-    [
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
-            "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        },
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
-            "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        }
-    ],
-    [
-        {
-            "Id": "26ebaa06-2587-409f-9aca-8d2ec7d080bd",
-            "Title": "Java",
-            "Description": "This is java topic",
-            "Sessions": null
-        },
-        {
-            "Id": "26ebaa06-2587-409f-9aca-8d2ec7d080bd",
-            "Title": "Java",
-            "Description": "This is java topic",
-            "Sessions": null
-        }
-    ],
-    [
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
-            "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        },
-        {
-            "Id": "e7dfe44e-1bc8-40e9-a056-d8aa853d6502",
-            "DurationInHour": 8,
-            "LearningObjective": "less iiiiiiiiiiiiii"
-        }
-    ],
-    [
-        {
-            "Id": "b33738ae-742f-4d8b-b17b-bd96df834945",
-            "StartDateTime": "2022-05-09T09:15:00",
-            "EndDateTime": "2022-05-10T09:15:00",
-            "TestFees": 888.87
-        },
-        {
-            "Id": "b33738ae-742f-4d8b-b17b-bd96df834945",
-            "StartDateTime": "2022-05-09T09:15:00",
-            "EndDateTime": "2022-05-10T09:15:00",
-            "TestFees": 888.87
+            "LearningObjective": "yessssssssss"
         }
     ]
-]
+}

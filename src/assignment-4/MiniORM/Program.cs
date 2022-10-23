@@ -132,5 +132,4 @@ var myORM = new MyORM<Guid, Topic>();
 
 await myORM.Insert(topic1);
 
-
-// await myORM.Delete(new Guid("c482d3ff-2a38-4da6-b8f2-82715d301da0"));
+await myORM.GetById(new Guid("c482d3ff-2a38-4da6-b8f2-82715d301da0"));

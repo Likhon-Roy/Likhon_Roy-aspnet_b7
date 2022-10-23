@@ -136,31 +136,6 @@ namespace MyMiniOrm
                         await RecursiveMethod(property.GetValue(item));
                     }
                 }
-
-                // if (QueryType.Insert == queryType)
-                // {
-                //     await InsertQuery(propertyInfo, type, instance);
-                // }
-                // else if (QueryType.Update == queryType)
-                // {
-                //     await UpdateQuery(propertyInfo, type, instance);
-                // }
-                // else if (QueryType.DeleteByItem == queryType)
-                // {
-                //     await DeleteByItemQuery(propertyInfo, type, instance);
-                // }
-                // else if (QueryType.DeleteById == queryType)
-                // {
-                //     await DeleteByItemQuery(propertyInfo, type, instance);
-                // }
-                // else if (QueryType.GetById == queryType)
-                // {
-                //     await GetByIdQuery(propertyInfo, type, instance);
-                // }
-                // else if (QueryType.GetAll == queryType)
-                // {
-                //     await GetAllQuery(propertyInfo, type, instance);
-                // }
             }
 
             parentId = localParentId;
@@ -219,7 +194,6 @@ namespace MyMiniOrm
             {
                 var x = ppp.PropertyType.AssemblyQualifiedName;
                 var isDateTime = x.Contains("System.DateTime,");
-                //     DateTime dateTimeFormat = DateTime.Parse(System.Convert.ToDateTime(ppp.GetValue(instance)).ToString("yyyy-MM-dd HH:mm:ss"));
 
                 if (lastProperty != null && lastProperty == ppp.Name)
                 {
@@ -413,78 +387,6 @@ namespace MyMiniOrm
             var query = sb.ToString();
 
             await _dataUtility.ExecuteCommandAsync(query, parameters, System.Data.CommandType.Text);
-        }
-
-        private async Task DeleteByIdQuery(PropertyInfo[] propertyInfo, Type type, object instance)
-        {
-            StringBuilder? sb = new StringBuilder();
-
-            sb.Append($"delete from {type.Name}s where ");
-
-            foreach (var ppp in propertyInfo)
-            {
-                if (propertyInfo.Last() == ppp)
-                {
-                    sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}'");
-                }
-                else
-                {
-                    sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}' and ");
-                }
-            }
-
-            var query = sb.ToString();
-
-            await _dataUtility.ExecuteCommandAsync(query, null, System.Data.CommandType.Text);
-
-        }
-
-        private async Task GetByIdQuery(PropertyInfo[] propertyInfo, Type type, object instance)
-        {
-            StringBuilder? sb = new StringBuilder();
-
-            sb.Append($"Select * from {type.Name}s where ");
-
-            foreach (var ppp in propertyInfo)
-            {
-                if (ppp.Name == "Id")
-                {
-                    sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}'");
-                }
-                // else
-                // {
-                //     sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}' and ");
-                // }
-            }
-
-            var query = sb.ToString();
-
-            await _dataUtility.GetDataAsync(query, null, System.Data.CommandType.Text);
-
-        }
-
-        private async Task GetAllQuery(PropertyInfo[] propertyInfo, Type type, object instance)
-        {
-            StringBuilder? sb = new StringBuilder();
-
-            sb.Append($"Select * from {type.Name}s");
-
-            // foreach (var ppp in propertyInfo)
-            // {
-            //     if (ppp.Name == "Id")
-            //     {
-            //         sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}'");
-            //     }
-            //     // else
-            //     // {
-            //     //     sb.Append($"{ppp.Name} = '{ppp.GetValue(instance)}' and ");
-            //     // }
-            // }
-
-            var query = sb.ToString();
-
-            await _dataUtility.GetDataAsync(query, null, System.Data.CommandType.Text);
-
         }
     }
 }
