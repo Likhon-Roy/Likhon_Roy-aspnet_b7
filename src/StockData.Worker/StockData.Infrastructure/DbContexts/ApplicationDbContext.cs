@@ -34,5 +34,6 @@ namespace StockData.Infrastructure.DbContexts
         }
 
         public DbSet<Company> Companies { get; set; }
+        public DbSet<StockPrice> StockPrices { get; set; }
     }
 }
