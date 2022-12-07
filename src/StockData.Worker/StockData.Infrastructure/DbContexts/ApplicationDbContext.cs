@@ -29,6 +29,10 @@ namespace StockData.Infrastructure.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<StockPrice>()
+                .HasOne(p => p.Company)
+                .WithMany(i => i.StockPrices)
+                .HasForeignKey(p => p.CompanyId);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,12 +1,13 @@
-namespace StockData.Infrastructure.Entities
+namespace StockData.Infrastructure.BusinessObject
 {
-    public class StockPrice : IEntity<Guid>
+    public class StockPrice
     {
         public Guid Id { get; set; }
 
         public Guid CompanyId { get; set; }
         public Company? Company { get; set; }
 
+        public string? CompanyName { get; set; }
         public double? LastTradingPrice { get; set; }
         public double? High { get; set; }
         public double? Low { get; set; }

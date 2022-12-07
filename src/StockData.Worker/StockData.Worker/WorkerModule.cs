@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using StockData.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,9 @@ namespace StockData.Worker
     {
         protected override void Load(ContainerBuilder builder)
         {
-            /*
-            builder.RegisterType<CourseModel>().As<ICourseModel>()
+            builder.RegisterType<StockPriceService>().As<IStockPriceService>()
                 .InstancePerLifetimeScope();
-            builder.RegisterType<CourseModel>().AsSelf();
-            builder.RegisterType<CourseCreateModel>().AsSelf();
-            builder.RegisterType<CourseEditModel>().AsSelf();
-            builder.RegisterType<CourseListModel>().AsSelf();
-            builder.RegisterType<RegisterModel>().AsSelf();
-            builder.RegisterType<LoginModel>().AsSelf();
-            */
+
             base.Load(builder);
         }
     }

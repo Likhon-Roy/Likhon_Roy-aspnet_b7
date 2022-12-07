@@ -5,25 +5,37 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StockData.Web.Migrations
 {
-    public partial class AddStockPriceTable : Migration
+    public partial class AddAllTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TradeCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "StockPrices",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LastTradingPrice = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    High = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Low = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClosePrice = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    YesterdayClosePrice = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Change = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Trade = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Volume = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastTradingPrice = table.Column<double>(type: "float", nullable: true),
+                    High = table.Column<double>(type: "float", nullable: true),
+                    Low = table.Column<double>(type: "float", nullable: true),
+                    ClosePrice = table.Column<double>(type: "float", nullable: true),
+                    YesterdayClosePrice = table.Column<double>(type: "float", nullable: true),
+                    Change = table.Column<double>(type: "float", nullable: true),
+                    Trade = table.Column<double>(type: "float", nullable: true),
+                    Value = table.Column<double>(type: "float", nullable: true),
+                    Volume = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,6 +58,9 @@ namespace StockData.Web.Migrations
         {
             migrationBuilder.DropTable(
                 name: "StockPrices");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
         }
     }
 }

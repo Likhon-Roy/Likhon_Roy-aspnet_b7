@@ -3,12 +3,16 @@ using Autofac.Extensions.DependencyInjection;
 using StockData.Worker;
 using Serilog;
 using Serilog.Events;
+using StockData.Infrastructure.Services;
+using DevTrack.Infrastructure;
+using System.Reflection;
 
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false)
                 .AddEnvironmentVariables()
                 .Build();
 
 var connectionString = configuration.GetConnectionString("DefaultConnection");
+var assemblyName = Assembly.GetExecutingAssembly().FullName;
 
 var migrationAssemblyName = typeof(Worker).Assembly.FullName;
 
@@ -30,6 +34,8 @@ try
         .ConfigureContainer<ContainerBuilder>(builder =>
         {
             builder.RegisterModule(new WorkerModule());
+            builder.RegisterModule(new InfrastructureModule(connectionString,
+                assemblyName));
         })
         .ConfigureServices(services =>
         {

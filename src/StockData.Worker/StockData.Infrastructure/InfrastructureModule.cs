@@ -1,6 +1,9 @@
 
 using Autofac;
 using StockData.Infrastructure.DbContexts;
+using StockData.Infrastructure.Repositories;
+using StockData.Infrastructure.Services;
+using StockData.Infrastructure.UnitOfWorks;
 
 namespace DevTrack.Infrastructure
 {
@@ -23,6 +26,19 @@ namespace DevTrack.Infrastructure
             builder.RegisterType<ApplicationDbContext>().As<IApplicationDbContext>()
                 .WithParameter("connectionString", _connectionString)
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
+
+            // builder.RegisterType<StockPriceService>().As<IStockPriceService>()
+            //     .InstancePerLifetimeScope();
+
+            builder.RegisterType<StockPriceRepository>().As<IStockPriceRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<CompanyRepository>().As<ICompanyRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
                 .InstancePerLifetimeScope();
 
             base.Load(builder);

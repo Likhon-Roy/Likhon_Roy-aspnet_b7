@@ -29,7 +29,6 @@ namespace StockData.Web.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TradeCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -43,35 +42,35 @@ namespace StockData.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Change")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Change")
+                        .HasColumnType("float");
 
-                    b.Property<string>("ClosePrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("ClosePrice")
+                        .HasColumnType("float");
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("High")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("High")
+                        .HasColumnType("float");
 
-                    b.Property<string>("LastTradingPrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("LastTradingPrice")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Low")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Low")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Trade")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Trade")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Value")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Volume")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Volume")
+                        .HasColumnType("float");
 
-                    b.Property<string>("YesterdayClosePrice")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("YesterdayClosePrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -83,12 +82,17 @@ namespace StockData.Web.Migrations
             modelBuilder.Entity("StockData.Infrastructure.Entities.StockPrice", b =>
                 {
                     b.HasOne("StockData.Infrastructure.Entities.Company", "Company")
-                        .WithMany()
+                        .WithMany("StockPrices")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("StockData.Infrastructure.Entities.Company", b =>
+                {
+                    b.Navigation("StockPrices");
                 });
 #pragma warning restore 612, 618
         }
