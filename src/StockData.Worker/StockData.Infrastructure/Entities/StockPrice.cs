@@ -16,5 +16,6 @@ namespace StockData.Infrastructure.Entities
         public double? Trade { get; set; }
         public double? Value { get; set; }
         public double? Volume { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

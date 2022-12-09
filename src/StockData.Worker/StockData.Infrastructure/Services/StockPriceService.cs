@@ -14,18 +14,9 @@ namespace StockData.Infrastructure.Services
             _applicationUnitOfWork = applicationUnitOfWork;
         }
 
-        public void GetData()
-        {
-            var x = _applicationUnitOfWork.Company.GetAll();
-        }
-
         public void SaveStockPrices(List<StockDataBO> listOfStockPrice)
         {
             var companies = _applicationUnitOfWork.Company.GetAll();
-
-            // companies.Where(x => x.)
-
-            int i = 0;
 
             foreach (var x in listOfStockPrice)
             {
@@ -53,14 +44,9 @@ namespace StockData.Infrastructure.Services
                 stockPrice.Change = x.Change;
                 stockPrice.Value = x.Value;
                 stockPrice.Volume = x.Volume;
+                stockPrice.CreationTime = DateTime.Now;
 
                 _applicationUnitOfWork.StockPrice.Add(stockPrice);
-
-                i = i + 1;
-                if (i == 5)
-                {
-                    break;
-                }
             }
 
             _applicationUnitOfWork.Save();
