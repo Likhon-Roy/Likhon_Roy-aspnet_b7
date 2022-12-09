@@ -21,6 +21,8 @@ namespace StockData.Worker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                Console.WriteLine("Start");
+
                 var url = "https://www.dse.com.bd/latest_share_price_scroll_l.php";
 
                 HtmlWeb web = new HtmlWeb();
@@ -28,7 +30,7 @@ namespace StockData.Worker
 
                 var status = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/span[3]/span[1]/b[1]").InnerHtml;
 
-                if (status.ToLower() == "closed")
+                if (status.ToLower() == "closed" || true)
                 {
                     var tableData = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[1]/section[1]/div[1]/div[3]/div[1]/div[2]/div[1]/table[1]");
 
@@ -86,6 +88,7 @@ namespace StockData.Worker
 
                     _stockPriceService.SaveStockPrices(listOfStockPrice);
                 }
+                Console.WriteLine("End");
 
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(60000, stoppingToken);

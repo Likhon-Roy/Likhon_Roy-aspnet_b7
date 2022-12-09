@@ -6,6 +6,8 @@ using Serilog.Events;
 using StockData.Infrastructure.Services;
 using DevTrack.Infrastructure;
 using System.Reflection;
+using StockData.Infrastructure.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", false)
                 .AddEnvironmentVariables()
@@ -39,6 +41,8 @@ try
         })
         .ConfigureServices(services =>
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+			    options.UseSqlServer(connectionString, m => m.MigrationsAssembly(assemblyName)));
             services.AddHostedService<Worker>();
         })
         .Build();

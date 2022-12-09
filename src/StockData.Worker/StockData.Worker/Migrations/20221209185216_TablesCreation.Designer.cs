@@ -9,11 +9,11 @@ using StockData.Infrastructure.DbContexts;
 
 #nullable disable
 
-namespace StockData.Web.Migrations
+namespace StockData.Worker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221207160724_AddAllTables")]
-    partial class AddAllTables
+    [Migration("20221209185216_TablesCreation")]
+    partial class TablesCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,9 @@ namespace StockData.Web.Migrations
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<double?>("High")
                         .HasColumnType("float");

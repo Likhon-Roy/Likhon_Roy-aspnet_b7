@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace StockData.Web.Migrations
+namespace StockData.Worker.Migrations
 {
-    public partial class AddAllTables : Migration
+    public partial class TablesCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,7 +35,8 @@ namespace StockData.Web.Migrations
                     Change = table.Column<double>(type: "float", nullable: true),
                     Trade = table.Column<double>(type: "float", nullable: true),
                     Value = table.Column<double>(type: "float", nullable: true),
-                    Volume = table.Column<double>(type: "float", nullable: true)
+                    Volume = table.Column<double>(type: "float", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
