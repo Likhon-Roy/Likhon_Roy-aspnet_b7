@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockData.Worker", "StockDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockData.Infrastructure", "StockData.Infrastructure\StockData.Infrastructure.csproj", "{AE36E30A-2CBE-4C1F-A501-471B21D85E54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockData.Web", "StockData.Web\StockData.Web.csproj", "{6C54DBBC-EFA1-47C9-9B7F-455FF6DCDAF9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{AE36E30A-2CBE-4C1F-A501-471B21D85E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE36E30A-2CBE-4C1F-A501-471B21D85E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE36E30A-2CBE-4C1F-A501-471B21D85E54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C54DBBC-EFA1-47C9-9B7F-455FF6DCDAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C54DBBC-EFA1-47C9-9B7F-455FF6DCDAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C54DBBC-EFA1-47C9-9B7F-455FF6DCDAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C54DBBC-EFA1-47C9-9B7F-455FF6DCDAF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

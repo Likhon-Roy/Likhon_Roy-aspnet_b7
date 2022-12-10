@@ -30,7 +30,7 @@ namespace StockData.Worker
 
                 var status = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[1]/header[1]/div[1]/span[3]/span[1]/b[1]").InnerHtml;
 
-                if (status.ToLower() == "closed" || true)
+                if (status.ToLower() == "open")
                 {
                     var tableData = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[1]/section[1]/div[1]/div[3]/div[1]/div[2]/div[1]/table[1]");
 
