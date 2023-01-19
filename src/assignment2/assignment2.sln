@@ -97,7 +97,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "45-Task_116", "ConsoleApp49
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "46-Task_703A", "ConsoleApp50\46-Task_703A.csproj", "{80741E6F-6503-4E6E-8EDA-7C28131F6AD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp51", "ConsoleApp51\ConsoleApp51.csproj", "{DE968217-CBE8-420E-A84F-9E77A6E2DA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "48-Task_155", "ConsoleApp51\48-Task_155.csproj", "{DE968217-CBE8-420E-A84F-9E77A6E2DA50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
