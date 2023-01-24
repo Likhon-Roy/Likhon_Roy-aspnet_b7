@@ -6,7 +6,6 @@ namespace SQSOperation
 {
     public class SQSService
     {
-
         private const string QueueUrl = "https://sqs.us-east-1.amazonaws.com/847888492411/aspnetb7-likhon-SQS";
         private readonly RegionEndpoint _bucketRegion = RegionEndpoint.USEast1;
         private IAmazonSQS client;
