@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S3Bucket", "S3Bucket\S3Bucket.csproj", "{EABD5846-E8B8-4CAE-8638-6B5AC3C9AAC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S3Bucket", "S3Bucket\S3Bucket.csproj", "{EABD5846-E8B8-4CAE-8638-6B5AC3C9AAC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQSOperation", "SQSOperation\SQSOperation.csproj", "{024EFF09-1461-4456-8BC7-66E0DCD192C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQSOperation", "SQSOperation\SQSOperation.csproj", "{024EFF09-1461-4456-8BC7-66E0DCD192C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDb", "DynamoDb\DynamoDb.csproj", "{1277A8F9-54A6-47A7-A1DD-E8D605DF1DD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{024EFF09-1461-4456-8BC7-66E0DCD192C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{024EFF09-1461-4456-8BC7-66E0DCD192C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{024EFF09-1461-4456-8BC7-66E0DCD192C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1277A8F9-54A6-47A7-A1DD-E8D605DF1DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1277A8F9-54A6-47A7-A1DD-E8D605DF1DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1277A8F9-54A6-47A7-A1DD-E8D605DF1DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1277A8F9-54A6-47A7-A1DD-E8D605DF1DD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
