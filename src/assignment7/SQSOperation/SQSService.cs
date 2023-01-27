@@ -31,66 +31,64 @@ namespace SQSOperation
 
         public async Task ReadTenMessage()
         {
-            for (int i = 0; i <= 10; i++)
+
+            var receiveMessageRequest = new ReceiveMessageRequest
             {
-                var receiveMessageRequest = new ReceiveMessageRequest
-                {
-                    AttributeNames = new List<string>() { "All" },
-                    MaxNumberOfMessages = 1,
-                    MessageAttributeNames = { "All" },
-                    QueueUrl = QueueUrl,
-                    //VisibilityTimeout = (int)TimeSpan.FromMinutes(10).TotalSeconds,
-                    // WaitTimeSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds
-                };
+                AttributeNames = new List<string>() { "All" },
+                MaxNumberOfMessages = 10,
+                MessageAttributeNames = { "All" },
+                QueueUrl = QueueUrl,
+                //VisibilityTimeout = (int)TimeSpan.FromMinutes(10).TotalSeconds,
+                // WaitTimeSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds
+            };
 
-                var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
+            var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
 
-                if (receiveMessageResponse.Messages.Count > 0)
-                    Console.WriteLine("Message Body: " + receiveMessageResponse.Messages[0].Body);
-            }
+            if (receiveMessageResponse.Messages.Count > 0)
+                Console.WriteLine("Message Body: " + receiveMessageResponse.Messages[0].Body);
+
         }
 
         public async Task DeleteReadMessages()
         {
-            for (int i = 0; i <= 10; i++)
+
+            var receiveMessageRequest = new ReceiveMessageRequest
             {
-                var receiveMessageRequest = new ReceiveMessageRequest
-                {
-                    AttributeNames = new List<string>() { "All" },
-                    MaxNumberOfMessages = 1,
-                    QueueUrl = QueueUrl,
-                    VisibilityTimeout = (int)TimeSpan.FromMinutes(10).TotalSeconds,
-                    WaitTimeSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds
-                };
+                AttributeNames = new List<string>() { "All" },
+                MaxNumberOfMessages = 10,
+                QueueUrl = QueueUrl,
+                VisibilityTimeout = (int)TimeSpan.FromMinutes(10).TotalSeconds,
+                WaitTimeSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds
+            };
 
-                var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
+            var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
 
-                if (receiveMessageResponse.Messages.Count > 0)
+            if (receiveMessageResponse.Messages.Count > 0)
+            {
+                foreach (var message in receiveMessageResponse.Messages)
                 {
-                    foreach (var message in receiveMessageResponse.Messages)
+                    foreach (var x in message.Attributes)
                     {
-                        foreach (var x in message.Attributes)
+                        if (x.Key == "ApproximateReceiveCount")
                         {
-                            if (x.Key == "ApproximateReceiveCount")
+                            var totalRead = int.Parse(x.Value);
+                            if (totalRead > 1)
                             {
-                                var totalRead = int.Parse(x.Value);
-                                if (totalRead > 1)
+                                Console.WriteLine("Deleted Message ID '" + message.MessageId + "', Body : " + message.Body);
+
+                                var delRequest = new DeleteMessageRequest
                                 {
-                                    Console.WriteLine("Deleted Message ID '" + message.MessageId + "', Body : " + message.Body);
+                                    QueueUrl = QueueUrl,
+                                    ReceiptHandle = message.ReceiptHandle
+                                };
 
-                                    var delRequest = new DeleteMessageRequest
-                                    {
-                                        QueueUrl = QueueUrl,
-                                        ReceiptHandle = message.ReceiptHandle
-                                    };
-
-                                    var delResponse = await client.DeleteMessageAsync(delRequest);
-                                }
+                                var delResponse = await client.DeleteMessageAsync(delRequest);
                             }
                         }
                     }
                 }
             }
+
         }
     }
 }
