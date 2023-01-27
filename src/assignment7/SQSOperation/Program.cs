@@ -20,4 +20,4 @@ await sqs.AddMssage("Add message only with body");
 
 await sqs.ReadTenMessage();
 
-// await sqs.DeleteReadMessages();
+await sqs.DeleteReadMessages();

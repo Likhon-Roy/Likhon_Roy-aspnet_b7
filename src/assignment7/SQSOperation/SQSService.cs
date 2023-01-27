@@ -45,8 +45,12 @@ namespace SQSOperation
             var receiveMessageResponse = await client.ReceiveMessageAsync(receiveMessageRequest);
 
             if (receiveMessageResponse.Messages.Count > 0)
-                Console.WriteLine("Message Body: " + receiveMessageResponse.Messages[0].Body);
-
+            {
+                foreach (var msg in receiveMessageResponse.Messages)
+                {
+                    Console.WriteLine("Message Body: " + msg.Body);
+                }
+            }
         }
 
         public async Task DeleteReadMessages()

@@ -27,11 +27,13 @@ try
     await dynamoDb.CreateBookItem(book);
     // }
 
-    var book1 = await dynamoDb.GetBookById(30, 36);
+    var partitionKey = 10;
+    var sortKey = 12;
+    var book1 = await dynamoDb.GetBookById(partitionKey, sortKey);
 
     var books = await dynamoDb.GetTenDataByScan();
 
-    // await dynamoDb.DeleteBook(30, 36);
+    await dynamoDb.DeleteBook(partitionKey, sortKey);
 }
 catch (AmazonDynamoDBException e) { Console.WriteLine(e.Message); }
 catch (AmazonServiceException e) { Console.WriteLine(e.Message); }
